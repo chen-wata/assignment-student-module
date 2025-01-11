@@ -24,7 +24,12 @@ export class ChenStudentService {
         if (!student) {
             throw new NotFoundException(`Student with ID ${id} not found`);
         }
-
         return student;
+    }
+
+    async updateStudent(id: number, data: Partial<Student>): Promise<Student> {
+        const student = await this.getStudentById(id);
+        Object.assign(student, data);
+        return this.studentRepository.save(student);
     }
 }
