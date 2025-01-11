@@ -28,12 +28,17 @@ export class ChenStudentController {
     async getStudentById(@Param('id') id: number): Promise<Student> {
         return this.studentService.getStudentById(id);
     }
-    
+
     @Put(':id')
     async updateStudent(
         @Param('id') id: number,
         @Body() data: Partial<Student>,
     ): Promise<Student> {
         return this.studentService.updateStudent(id, data);
+    }
+
+    @Delete(':id')
+    async deleteStudent(@Param('id') id: number): Promise<void> {
+        return this.studentService.deleteStudent(id);
     }
 }
